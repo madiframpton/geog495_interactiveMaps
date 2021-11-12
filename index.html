@@ -106,19 +106,19 @@
 
         // load data and add as layer
         async function geojsonFetch() {
-            let response = await fetch('assets/waCovidData.geojson');
+            let response = await fetch('assets/wa-covid-data-102521.geojson');
             let waCovidData = await response.json();
 
             map.on('load', function loadingData() {
-                map.addSource('waCovidData', {
+                map.addSource('wa-covid-data-102521', {
                     type: 'geojson',
                     data: waCovidData
                 });
 
                 map.addLayer({
-                    'id': 'waCovidData-layer',
+                    'id': 'wa-covid-data-102521-layer',
                     'type': 'fill',
-                    'source': 'waCovidData',
+                    'source': 'wa-covid-data-102521',
                     'paint': {
                         'fill-color': [
                             'step',
@@ -187,7 +187,7 @@
 
             map.on('mousemove', ({point}) => {
                 const state = map.queryRenderedFeatures(point, {
-                    layers: ['waCovidData-layer']
+                    layers: ['wa-covid-data-102521-layer']
                 });
                 document.getElementById('text-escription').innerHTML = state.length ?
                     `<h3>${state[0].properties.name}</h3><p><strong><em>${state[0].properties.fullyVaxPer10k}</strong> Vaccinated induviduals per 10k people</em></p>` :
